@@ -10,6 +10,8 @@ Lancer le contenu du projet sur votre serveur local favori. Avec le serveur buil
 php -S localhost:5000
 ~~~
 
+Essayer d'accéder à la page sous le lien `Éditer le contenu du site`. Se connecter avec l'utilisateur `foo` et le mot de passe `bar`. Réaccéder à la page. Modifier les autorisations, le token enregistré dans les cookies pour tester l'application et la compréhension des JWT.
+
 ## Ressources
 
 - [JSON Web Token (JWT)](https://www.rfc-editor.org/rfc/rfc7519)
