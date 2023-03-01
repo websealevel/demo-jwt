@@ -7,7 +7,7 @@ require './jwt.php';
 require './globals.php';
 require './utils.php';
 
-if (!($_POST['login'] && $_POST['password'])) {
+if (!(isset($_POST['login']) && isset($_POST['password']))) {
 	print_something_and_exit();
 }
 
