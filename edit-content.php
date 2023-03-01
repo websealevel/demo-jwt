@@ -40,7 +40,7 @@ if ($signature !== $signatureFromUser) {
 
 //On est sûrs que le token n'a pas été modifié depuis sa création, on peut extraire le rôle et vérifie si les autorisations associées permettent d'acceder à cette page.
 
-$payload = json_decode(base64_decode($payloadEncoded));
+$payload = json_decode(decodeBase64Url($payloadEncoded));
 
 $role = $payload->role;
 

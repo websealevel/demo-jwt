@@ -10,8 +10,8 @@
 function create_signed_jwt_token(array $header, array $payload, string $secret): string
 {
 
-    $encodedHeader = base64_encode(json_encode($header));
-    $encodedPayload = base64_encode(json_encode($payload));
+    $encodedHeader = encodeBase64Url(json_encode($header));
+    $encodedPayload = encodeBase64Url(json_encode($payload));
 
     //Signature créee à partir header, payload et d'un secret.
     $signature = create_signature($encodedHeader, $encodedPayload, SECRET);
@@ -33,13 +33,15 @@ function create_signed_jwt_token(array $header, array $payload, string $secret):
  */
 function create_signature(string $encodedHeader, string $encodedPayload, string $secret): string
 {
-    return sha1(sprintf("%s%s%s", $encodedHeader, $encodedPayload, $secret));
+    return hash_hmac('sha256', sprintf("%s%s", $encodedHeader, $encodedPayload), $secret);
 }
 
 function encodeBase64Url(string $data): string
 {
+    return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
 }
 
 function decodeBase64Url(string $data): string
 {
+    return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
 }
