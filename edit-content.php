@@ -38,8 +38,23 @@ if ($signature !== $signatureFromUser) {
     print_something_and_exit("I can't trust you ! Go away !");
 }
 
-//On récupère le login dans le payload
-$login = 'Login';
+//On est sûrs que le token n'a pas été modifié depuis sa création, on peut extraire le rôle et vérifie si les autorisations associées permettent d'acceder à cette page.
+
+$payload = json_decode(base64_decode($payloadEncoded));
+
+$role = $payload->role;
+
+$login = $payload->login;
+
+if (!isset(ROLES[$role])) {
+    print_something_and_exit("I can't trust you ! Go away ! (Your role does not exists)");
+}
+
+$authorizations = ROLES[$role];
+
+if (!in_array('edit-content', $authorizations)) {
+    print_something_and_exit("You don't have the permission to edit the content.");
+}
 
 ?>
 

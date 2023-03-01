@@ -9,7 +9,7 @@ DEFINE('SECRET', 'secret_pour_signer_mes_tokens');
  * Les roles donnent acces à des routes sur le site
  */
 DEFINE('ROLES', array(
-    'editor' => 'edit-content'
+    'editor' => array('edit-content')
 ));
 
 
