@@ -17,3 +17,4 @@ Essayer d'accéder à la page sous le lien `Éditer le contenu du site`. Se conn
 - [JSON Web Token (JWT)](https://www.rfc-editor.org/rfc/rfc7519)
 - [RFC 9068: JWT Profile for OAuth 2.0 Access Tokens](https://oauth.net/2/jwt-access-tokens/)
 - [Introduction to JSON Web Tokens](https://jwt.io/introduction)
+- [Décoder le JWT](https://jwt.io/)
