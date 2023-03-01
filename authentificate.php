@@ -11,8 +11,8 @@ if (!(isset($_POST['login']) && isset($_POST['password']))) {
 	print_something_and_exit();
 }
 
-//On test que l'user existe (identification), que son mot de passe est correcte (authentification), et on lui donne un role
-//auquel sont attachées des autorisations
+//On vérifie que l'user existe (identification), que son mot de passe est correcte (authentification), et on lui donne un role
+//auquel sont attachées des autorisations. Ces données seront encapsulées dans le JWT crée après authentification.
 
 //Identification
 
@@ -32,7 +32,7 @@ if (!$authentificated) {
 	print_something_and_exit("You are not authentificated !");
 }
 
-//Création d'un JWT Token avec le role dedans pour gérer les autorisations.
+//Création d'un JWT Token avec le role dans le payload pour gérer les autorisations lors de requêtes ultérieures.
 $jwt = create_signed_jwt_token(
 	array(
 		"alg" => 'sha1',
@@ -45,7 +45,7 @@ $jwt = create_signed_jwt_token(
 	SECRET
 );
 
-//Set un cookie avec l'option httponly (pour empecher de le manipuler en JS)
+//Set un cookie avec l'option httponly (pour éviter qu'il soit manipulé par du code JavaScript)
 setcookie('jwt', $jwt, httponly: true);
 ?>
 
