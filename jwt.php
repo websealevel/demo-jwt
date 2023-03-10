@@ -36,11 +36,21 @@ function create_signature(string $encodedHeader, string $encodedPayload, string 
     return hash_hmac('sha256', sprintf("%s%s", $encodedHeader, $encodedPayload), $secret);
 }
 
+/**
+ * Encode une chaine de caractère en base 64 URL
+ * @param string $data La chaîne à encoder
+ * @return string La chaine encodée
+ */
 function encodeBase64Url(string $data): string
 {
     return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
 }
 
+/**
+ * Decode une chaine de caractère encodée en base 64 URL
+ * @param string $data La chaîne encodée
+ * @return string La chaine décodée
+ */
 function decodeBase64Url(string $data): string
 {
     return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
