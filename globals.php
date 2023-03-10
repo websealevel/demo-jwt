@@ -3,7 +3,12 @@
 /**
  * Contient les constantes de l'application (pour la démo)
  */
+
+/**
+ * Le secret pour "saler" les JWT Tokens
+ */
 DEFINE('SECRET', 'secret_pour_signer_mes_tokens');
+
 
 /**
  * Les roles donnent acces à des routes sur le site
